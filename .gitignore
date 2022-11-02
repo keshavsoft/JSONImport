@@ -1,0 +1,10 @@
+.vscode/
+node_modules/
+
+/common
+/KData
+/DataSupply
+/public
+/KeshavSoft
+
+web.config
