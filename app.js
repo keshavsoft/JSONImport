@@ -1,4 +1,5 @@
 let CommonProjectName = "JSONImport";
+let CommonProjectNameForJSONApi = "JSONApi";
 
 const express = require('express');
 var path = require('path');
@@ -12,6 +13,7 @@ var port = normalizePort(process.env.PORT || '4119');
 //let SubRouteJSONUser = require("./Projects/JSONUser/Routes");
 //let SubRouteJSONProject = require("./Projects/JSONApi/Routes");
 let SubRouteJSONReports = require(`./Projects/${CommonProjectName}/Routes`);
+//let SubRouteJSONApi = require(`./Projects/${CommonProjectNameForJSONApi}/Routes`);
 
 app.use(cookieParser());
 
@@ -25,6 +27,7 @@ app.get('/', function (req, res, next) {
 //app.use("/JSONUser", SubRouteJSONUser);
 //app.use("/JSONApi", cors({ origin: '*' }), SubRouteJSONProject);
 app.use(`/${CommonProjectName}`, SubRouteJSONReports);
+//app.use(`/${CommonProjectNameForJSONApi}`, SubRouteJSONApi);
 
 function normalizePort(val) {
     var port = parseInt(val, 10);
