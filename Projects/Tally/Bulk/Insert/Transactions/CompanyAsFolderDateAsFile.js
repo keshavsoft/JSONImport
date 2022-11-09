@@ -59,8 +59,6 @@ let FromPowerShell = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
                                 inUserPK,
                                 inGuid: "voucherguid"
                             });
-                            console.log("LocalReturnFromItemsInsert----- : ", LocalReturnFromItemsInsert);
-
 
                             if (LocalReturnFromItemsInsert.KTF) {
                                 LocalReturnData.KTF = true;
@@ -79,71 +77,6 @@ let FromPowerShell = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
 
     return await LocalReturnData;
 };
-
-let FromPowerShell_18Jul = async ({ inFolderName, inBody, inUserPK }) => {
-    let LocalReturnData = { KTF: false, KResult: [] };
-    let LocalItemName = LocalGetDate();
-    let LocalArrayToInsert;
-    let LocalKeyNeeded = "sales";
-    console.log("imported");
-    if ("envelope" in inBody) {
-        if (LocalKeyNeeded in inBody.envelope) {
-            try {
-                let LocalJsonConfig = {
-                    inFolderName: inFolderName,
-                    inJsonFileName: ""
-                };
-
-                if (Array.isArray(inBody.envelope[LocalKeyNeeded])) {
-                    LocalArrayToInsert = inBody.envelope[LocalKeyNeeded];
-                    //console.log("LocalArrayToInsert : ", LocalArrayToInsert);
-                    //let LocalFileNameWithExtension = `Sales.json`;
-                    let LocalFileNameWithExtension = `${LocalArrayToInsert[0].date}.json`;
-                    let LocalReturnFromItemsInsert;
-
-                    let LocalReturnFromFileInsert = await CommonCreateInData.FileWithExtensionAsync({
-                        inFolderName: LocalJsonConfig.inFolderName,
-                        inFileNameWithExtension: LocalFileNameWithExtension,
-                        inUserPK
-                    });
-
-                    let LocalReturnFromConfigInsert = await CommonToDisplayFolder.CreateConfigFolder({
-                        inFolderName,
-                        inFileNameWithExtension: LocalFileNameWithExtension,
-                        inUserPK
-                    });
-
-                    if (LocalReturnFromFileInsert.KTF || LocalReturnFromFileInsert.AlreadyPresent) {
-                        if (LocalReturnFromConfigInsert.KTF || LocalReturnFromConfigInsert.AlreadyPresent) {
-                            LocalJsonConfig.inJsonFileName = LocalFileNameWithExtension;
-
-                            LocalReturnFromItemsInsert = await CommonFromTallyWithTemplate.BulkInsert({
-                                inJsonConfig: LocalJsonConfig,
-                                inToName: LocalItemName,
-                                inItemData: LocalArrayToInsert,
-                                inUserPK,
-                                inGuid: "voucherguid"
-                            });
-
-                            if (LocalReturnFromItemsInsert.KTF) {
-                                LocalReturnData.KTF = true;
-                            };
-                        };
-                    };
-
-                } else {
-                    LocalReturnData.KError = `Input is not an array : envelope.`;
-                }
-            } catch (error) {
-                LocalReturnData.KError = error;
-            };
-        };
-    };
-
-    return await LocalReturnData;
-};
-
-//let LocalFileNameWithExtension = `${inBody[0].DATE}.json`;
 
 module.exports = {
     FromPowerShell

@@ -22,7 +22,6 @@ exports.AsArray = (req, res, next) => {
                     res.json({ KTF: false, KReason: "inFolderName not found in body" })
                 } else {
                     if (("inFileNameWithExtension" in req.body) === false) {
-                        console.log("eeeeeeeeee : ", "inFileNameWithExtension" in req.body);
                         res.json({ KTF: false, KReason: "inFileNameWithExtension not found in body" });
                         res.end();
                     } else {

@@ -21,7 +21,7 @@ let FromPowerShell = async ({ inFolderName, inBody, inUserPK }) => {
     let LocalItemName = LocalGetDate();
     let LocalArrayToInsert;
     let LocalKeyNeeded = "sales";
-    console.log("imported");
+    
     if ("envelope" in inBody) {
         if (LocalKeyNeeded in inBody.envelope) {
             try {

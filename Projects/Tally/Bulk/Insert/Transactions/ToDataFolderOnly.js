@@ -13,7 +13,7 @@ class CommonFuncs {
             inFileNameWithExtension,
             inUserPK
         });
-        console.log("LocalReturnFromFileInsert : ", LocalReturnFromFileInsert, inFileNameWithExtension);
+        
         if (LocalReturnFromFileInsert.KTF || LocalReturnFromFileInsert.AlreadyPresent) {
             LocalReturnObject.KTF = true;
         };
@@ -40,12 +40,10 @@ let CurrentDateAsItemName = async ({ inFolderName, inFileName, inBody, inUserPK 
     let LocalToName = LocalGetDate();
     let LocalItemData;
     let LocalKeyNeeded;
-    console.log("LocalToName : ", inFolderName, inFileName, LocalItemData);
+    
     if ("envelope" in inBody) {
-        console.log("22222222222 : ");
         if (Object.keys(inBody.envelope).length === 1) {
             try {
-                console.log("33333333 : ");
                 LocalKeyNeeded = Object.keys(inBody.envelope)[0];
                 LocalItemData = inBody.envelope[LocalKeyNeeded];
                 let LocalReturnFromItemsInsert;
@@ -60,7 +58,6 @@ let CurrentDateAsItemName = async ({ inFolderName, inFileName, inBody, inUserPK 
                         inFileNameWithExtension: `${inFileName}.json`, inUserPK
                     });
 
-                    console.log("jVarLocalFromInsertFiles : ", jVarLocalFromInsertFiles);
                     if (jVarLocalFromInsertFiles.KTF) {
                         LocalReturnFromItemsInsert = await CommonDataSupplyToDataFolderOnly.BulkInsert({
                             inJsonConfig: LocalJsonConfig,
@@ -84,7 +81,6 @@ let CurrentDateAsItemName = async ({ inFolderName, inFileName, inBody, inUserPK 
             LocalReturnData.KError = `Input is not an array : envelope.`;
         };
     };
-    //   console.log(" LocalReturnData------PPPPPPP : ", LocalReturnData);
     return await LocalReturnData;
 };
 

@@ -53,7 +53,7 @@ let FromXmlBody = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
                     });
 
                     let LocalReturnFromItemsInsert;
-             //       console.log("33333333-----------------", jVarLocalFromInsertFiles);
+                    
                     if (jVarLocalFromInsertFiles.KTF) {
                         LocalReturnFromItemsInsert = await CommonFromTallyWithTemplateToConfigFile.BulkInsert({
                             inJsonConfig: LocalJsonConfig,
@@ -62,7 +62,7 @@ let FromXmlBody = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
                             inUserPK,
                             inGuid: "guid"
                         });
-                        //     console.log("44444-----------------", LocalReturnFromItemsInsert);
+                        
                         if (LocalReturnFromItemsInsert.KTF) {
                             LocalReturnData.KTF = true;
                         };

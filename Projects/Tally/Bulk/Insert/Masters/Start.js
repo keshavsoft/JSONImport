@@ -53,7 +53,7 @@ let FromPowerShell = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
                     });
 
                     let LocalReturnFromItemsInsert;
-             //       console.log("33333333-----------------", jVarLocalFromInsertFiles);
+                    
                     if (jVarLocalFromInsertFiles.KTF) {
                         LocalReturnFromItemsInsert = await CommonFromTallyWithTemplateToConfigFile.BulkInsert({
                             inJsonConfig: LocalJsonConfig,
@@ -62,7 +62,7 @@ let FromPowerShell = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
                             inUserPK,
                             inGuid: "guid"
                         });
-                        //     console.log("44444-----------------", LocalReturnFromItemsInsert);
+                        
                         if (LocalReturnFromItemsInsert.KTF) {
                             LocalReturnData.KTF = true;
                         };
@@ -78,7 +78,6 @@ let FromPowerShell = async ({ inFolderName, inFileName, inBody, inUserPK }) => {
             LocalReturnData.KError = `Input is not an array : envelope.`;
         };
     };
-    //   console.log(" LocalReturnData------PPPPPPP : ", LocalReturnData);
     return await LocalReturnData;
 };
 

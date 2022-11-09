@@ -11,15 +11,12 @@ router.post('/', xmlparser({ trim: false, explicitArray: false }), (req, res) =>
     let LocalFolderName = req.headers.foldername;
     let LocalFileName = req.headers.filename;
 
-    console.log("CommonCompanyFolderDateTimeWithItem ------------- : ", Object.keys(LocalBody.envelope), LocalFolderName, LocalFileName);
-
     Repository.EndPointPost({
         LocalUserPK: LocalDataPk,
         inFolderName: LocalFolderName,
         inFileName: LocalFileName,
         inBodyData: LocalBody
     }).then(PromiseData => {
-        console.log("PromiseData : ", PromiseData);
         res.end(JSON.stringify(PromiseData));
     }).catch();
 
