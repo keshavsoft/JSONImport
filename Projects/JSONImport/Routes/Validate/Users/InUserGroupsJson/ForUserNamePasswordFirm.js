@@ -5,8 +5,6 @@ let Repo = require("../../../../Repository/Validate/Users/InUserGroupsJson/ForCr
 let CommonjwtFunc = require("../../../../../../common/Jwt/ForUserGroupsJson");
 
 router.post('/LoginCheckReturnTokenOnly', (req, res,) => {
-    console.log("LoginCheckReturnTokenOnly : ", req.body);
-
     if ("inUserName" in req.body) {
         if ("inPassWord" in req.body) {
             if ("inFirmName" in req.body) {
@@ -23,7 +21,6 @@ router.post('/LoginCheckReturnTokenOnly', (req, res,) => {
                         CommonjwtFunc.CreateToken({
                             inDataPk: PromiseData.kPK
                         }).then((PromiseDataFromJwt) => {
-                            console.log("PromiseDataFromJwt : ", PromiseDataFromJwt);
                             res.end(PromiseDataFromJwt.KToken);
                         });
                     };
