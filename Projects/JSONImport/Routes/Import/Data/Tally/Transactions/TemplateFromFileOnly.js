@@ -10,7 +10,7 @@ router.post('/', xmlparser({ trim: false, explicitArray: false }), (req, res) =>
 
     let LocalFolderName = req.headers.foldername;
     let LocalFileName = req.headers.filename;
-    console.log("LocalBody : ", LocalBody);
+    console.log("LocalBody-----trans----- : ", LocalBody);
     Repository.EndPointPost({
         LocalUserPK: LocalDataPk,
         inFolderName: LocalFolderName,
