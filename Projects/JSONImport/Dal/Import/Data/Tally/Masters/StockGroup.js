@@ -9,7 +9,7 @@ let FromXml = async ({ LocalUserPK, inFolderName, inFileName, inBodyData }) => {
             inBody: inBodyData,
             inUserPK: LocalUserPK
         });
-        
+        console.log("LocalFromTally : ", LocalFromTally);
         return await LocalFromTally;
     };
 };
