@@ -1,3 +1,4 @@
+//let CommonFileInsertBulk = require("../../../../../../../../DataSupply/Fs/Config/Folders/Files/Insert/Bulk");
 let CommonFileInsertBulk = require("../../../../../DataSupply/Fs/Config/Folders/Files/Insert/Bulk");
 
 let BulkWithFileNameToDataOnly = async ({ inFolderName, inFileNameWithExtension, inBody, inUserPK }) => {
@@ -15,49 +16,6 @@ let BulkWithFileNameToDataOnly = async ({ inFolderName, inFileNameWithExtension,
     };
 
     return LocalReturnData;
-};
-
-let LocalTallyFuncs = {
-    PrepareFileName: ({ inBody }) => {
-        let LocalFileNameWithExtension;
-        let LocalDatesArray = [];
-        let LocalMaxDate, LocalMinDate;
-
-        LocalDatesArray = inBody.map(element => {
-            return element.DATE
-        }).filter(element => {
-            if (element !== null) {
-                return true;
-            };
-        });
-
-        LocalMaxDate = Math.max(...LocalDatesArray);
-        LocalMinDate = Math.min(...LocalDatesArray);
-
-        LocalFileNameWithExtension = `${LocalMinDate}-${LocalMaxDate}.json`;
-        console.log("LocalFileNameWithExtension : ", LocalFileNameWithExtension);
-        return LocalFileNameWithExtension;
-    },
-    PrepareBodyData: {
-        GroupByVoucherName: ({ inBody }) => {
-            let LocalReturnObject = {};
-
-            inBody.forEach(element => {
-                LocalReturnObject[element.GUID] = element;
-            });
-
-            return LocalReturnObject;
-        },
-        ArrayToObject: ({ inBody }) => {
-            let LocalReturnObject = {};
-
-            inBody.forEach(element => {
-                LocalReturnObject[element.GUID] = element;
-            });
-
-            return LocalReturnObject;
-        }
-    }
 };
 
 let FromJsonFuncs = {
