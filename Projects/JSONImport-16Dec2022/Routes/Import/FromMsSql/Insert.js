@@ -5,10 +5,10 @@ let Repos = require("../../../Repository/Import/FromMsSql/Insert");
 router.post('/BulkWithFileNameToDataOnly/:inFolderName/:inFileNameWithExtension', function (req, res, next) {
 
     let LocalBody = req.body;
-   // console.log("jatin", LocalBody);
+    console.log("jatin", LocalBody);
     let LocalFolderName = req.params.inFolderName;
     let LocalFileNameWithExtension = `${req.params.inFileNameWithExtension}.json`;
-    //console.log("BulkWithFileNameToDataOnly : ");
+    console.log("BulkWithFileNameToDataOnly : ");
     Repos.BulkWithFileNameToDataOnly({
         inFolderName: LocalFolderName,
         inBody: LocalBody,
