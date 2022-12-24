@@ -1,16 +1,32 @@
 //let CommonFileInsertBulk = require("../../../../../../../../DataSupply/Fs/Config/Folders/Files/Insert/Bulk");
-let CommonFileInsertBulk = require("../../../../../DataSupply/Fs/Config/Folders/Files/Insert/Bulk");
+//let CommonFileInsertBulk = require("../../../../../DataSupply/Fs/Config/Folders/Files/Insert/Bulk");
+let CommonFileInsertBulk = require("../../../../../DataSupply/Fs/Config/JSONFolder/DataPkAsFolder/DataFolder/UserFolder/Bulk/CreateFolderAndFileWithData");
+let path = require("path");
 
 let BulkWithFileNameToDataOnly = async ({ inFolderName, inFileNameWithExtension, inBody, inUserPK }) => {
     let LocalReturnData = { KTF: false, KResult: [] };
 
     try {
-        let LocalFromInsert = await CommonFileInsertBulk.InsertToDataOnly({
-            inFolderName, inFileNameWithExtension,
+        // let LocalFromInsert = await CommonFileInsertBulk.StartFunc({
+        //     inFolderName, inFileNameWithExtension,
+        //     inData: inBody,
+        //     inUserPK
+        // });
+
+        let LocalFromInsert = await CommonFileInsertBulk.StartFunc({
+            inFolderName,
+            inFileName: path.parse(inFileNameWithExtension).name,
             inData: inBody,
-            inUserPK
+            inDataPK: inUserPK
         });
-        LocalReturnData.KReason = LocalFromInsert.KReason;
+
+        if (LocalFromInsert.KTF === false) {
+            LocalReturnData.KReason = LocalFromInsert.KReason;
+            return LocalReturnData;
+        };
+
+        LocalReturnData.KTF = true;
+        LocalReturnData.KResult = LocalFromInsert.KResult;
     } catch (error) {
         LocalReturnData.KError = error;
     };

@@ -1,14 +1,13 @@
 let express = require('express');
 let router = express.Router();
 let Repos = require("../../../Repository/Import/FromMsSql/Insert");
+let CommonFromController = require("../../../Controllers/Import/FromMsSql/Insert.Controllers");
 
 router.post('/BulkWithFileNameToDataOnly/:inFolderName/:inFileNameWithExtension', function (req, res, next) {
-
     let LocalBody = req.body;
-   // console.log("jatin", LocalBody);
     let LocalFolderName = req.params.inFolderName;
     let LocalFileNameWithExtension = `${req.params.inFileNameWithExtension}.json`;
-    //console.log("BulkWithFileNameToDataOnly : ");
+
     Repos.BulkWithFileNameToDataOnly({
         inFolderName: LocalFolderName,
         inBody: LocalBody,
@@ -20,5 +19,7 @@ router.post('/BulkWithFileNameToDataOnly/:inFolderName/:inFileNameWithExtension'
         res.end(JSON.stringify(PromiseError));
     });
 });
+
+router.post('/BulkWithFileNameToDataOnlyResult/:inFolderName/:inFileNameWithExtension', CommonFromController.BulkWithFileNameToDataOnlyResult);
 
 module.exports = router;
