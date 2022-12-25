@@ -1,5 +1,6 @@
 //let CommonConfigBulk = require("../../../../../../../../DataSupply/Fs/Config/Folders/Insert/Bulk");
 let CommonConfigBulk = require("../../../../../../DataSupply/Fs/Config/Folders/Insert/Bulk");
+let CommonFromCreateMultipleFiles = require("../../../../../../DataSupply/Fs/Config/JSONFolder/DataPkAsFolder/DataFolder/UserFolder/Bulk/CreateMultipleFiles");
 
 let Bulk = async ({ inToName, inBody, inDataPK }) => {
     if (inDataPK > 0) {
@@ -13,7 +14,20 @@ let DataOnly = async ({ inToName, inBody, inDataPK }) => {
     };
 };
 
+let FileWithDataOnly = async ({ inFolderName, inBody, inDataPK }) => {
+  //  console.log("ssssssss : ", inFolderName, inBody, inDataPK);
+    if (inDataPK > 0) {
+        return await CommonFromCreateMultipleFiles.StartFunc({
+            inFolderName,
+            inData: inBody,
+            inDataPK
+        });;
+    };
+};
+
+
 module.exports = {
     Bulk,
-    DataOnly
+    DataOnly,
+    FileWithDataOnly
 };

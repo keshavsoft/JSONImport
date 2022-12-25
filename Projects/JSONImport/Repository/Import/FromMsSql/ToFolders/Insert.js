@@ -8,3 +8,7 @@ exports.Bulk = async ({ inToName, inBody, inDataPK }) => {
 exports.DataOnly = async ({ inToName, inBody, inDataPK }) => {
     return await Dal.DataOnly({ inToName, inBody, inDataPK });
 };
+
+exports.FileWithDataOnly = async ({ inFolderName, inBody, inDataPK }) => {
+    return await Dal.FileWithDataOnly({ inFolderName, inBody, inDataPK });
+};
